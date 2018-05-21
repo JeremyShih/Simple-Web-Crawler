@@ -11,7 +11,7 @@ using Wesley.Crawler.SimpleCrawler.Events;
 
 namespace Wesley.Crawler.SimpleCrawler
 {
-    public class SimpleCrawler:ICrawler
+    public class SimpleCrawler : ICrawler
     {
         public event EventHandler<OnStartEventArgs> OnStart;//爬虫启动事件
 
@@ -30,7 +30,7 @@ namespace Wesley.Crawler.SimpleCrawler
         /// <param name="uri">爬虫URL地址</param>
         /// <param name="proxy">代理服务器</param>
         /// <returns>网页源代码</returns>
-        public async Task<string> Start(Uri uri,string proxy=null)
+        public async Task<string> Start(Uri uri, string proxy = null)
         {
             return await Task.Run(() =>
             {
@@ -53,11 +53,12 @@ namespace Wesley.Crawler.SimpleCrawler
                     request.Timeout = 5000;//定义请求超时时间为5秒
                     request.KeepAlive = true;//启用长连接
                     request.Method = "GET";//定义请求方式为GET              
-                    if (proxy != null)request.Proxy = new WebProxy(proxy);//设置代理服务器IP，伪装请求地址
-                    request.CookieContainer = this.CookiesContainer;//附加Cookie容器
+                    if (proxy != null) request.Proxy = new WebProxy(proxy);//设置代理服务器IP，伪装请求地址
+                    request.CookieContainer = CookiesContainer;//附加Cookie容器
                     request.ServicePoint.ConnectionLimit = int.MaxValue;//定义最大连接数
 
-                    using (var response = (HttpWebResponse)request.GetResponse()) {//获取请求响应
+                    using (var response = (HttpWebResponse)request.GetResponse())
+                    {//获取请求响应
 
                         foreach (Cookie cookie in response.Cookies) this.CookiesContainer.Add(cookie);//将Cookie加入容器，保存登录状态
 
@@ -89,7 +90,7 @@ namespace Wesley.Crawler.SimpleCrawler
                                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                                 {
 
-                                    pageSource= reader.ReadToEnd();
+                                    pageSource = reader.ReadToEnd();
                                 }
                             }
                         }
@@ -102,7 +103,7 @@ namespace Wesley.Crawler.SimpleCrawler
                 }
                 catch (Exception ex)
                 {
-                    if (this.OnError != null) this.OnError(this, new OnErrorEventArgs(uri,ex));
+                    if (this.OnError != null) this.OnError(this, new OnErrorEventArgs(uri, ex));
                 }
                 return pageSource;
             });

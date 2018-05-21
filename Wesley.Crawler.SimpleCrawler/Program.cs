@@ -35,8 +35,9 @@ namespace Wesley.Crawler.SimpleCrawler
         /// <summary>
         /// 抓取城市列表
         /// </summary>
-        public static void CityCrawler() {
-            
+        public static void CityCrawler()
+        {
+
             var cityUrl = "http://hotels.ctrip.com/citylist";//定义爬虫入口URL
             var cityList = new List<City>();//定义泛型列表存放城市名称及对应的酒店URL
             var cityCrawler = new SimpleCrawler();//调用刚才写的爬虫程序
@@ -77,7 +78,8 @@ namespace Wesley.Crawler.SimpleCrawler
         /// <summary>
         /// 抓取酒店列表
         /// </summary>
-        public static void HotelCrawler() {
+        public static void HotelCrawler()
+        {
             var hotelUrl = "http://hotels.ctrip.com/hotel/zunyi558";
             var hotelList = new List<Hotel>();
             var hotelCrawler = new SimpleCrawler();
@@ -118,7 +120,8 @@ namespace Wesley.Crawler.SimpleCrawler
         /// <summary>
         /// 并发抓取示例
         /// </summary>
-        public static void ConcurrentCrawler() {
+        public static void ConcurrentCrawler()
+        {
             var hotelList = new List<Hotel>() {
                 new Hotel { HotelName="遵义浙商酒店", Uri=new Uri("http://hotels.ctrip.com/hotel/4983680.html?isFull=F") },
                 new Hotel { HotelName="遵义森林大酒店", Uri=new Uri("http://hotels.ctrip.com/hotel/1665124.html?isFull=F") },
@@ -156,7 +159,7 @@ namespace Wesley.Crawler.SimpleCrawler
 
 
 
-   
+
 
 
 

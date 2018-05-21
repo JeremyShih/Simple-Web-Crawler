@@ -12,7 +12,8 @@ namespace Wesley.Crawler.SimpleCrawler.Events
 
         public Exception Exception { get; set; }
 
-        public OnErrorEventArgs(Uri uri,Exception exception) {
+        public OnErrorEventArgs(Uri uri, Exception exception)
+        {
             this.Uri = uri;
             this.Exception = exception;
         }
